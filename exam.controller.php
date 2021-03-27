@@ -210,7 +210,7 @@ class examController extends exam
 		// 정답이 하나도 입력안되있을경우..
 		if($params->q_type==1)
 		{
-			if(!$params->q_answer6) return $this->makeObject(-1, 'msg_not_answer');
+			if($params->q_answer6 == "") return $this->makeObject(-1, 'msg_not_answer');
 			$params->q_answer = $params->q_answer6;
 		} else {
 			// 1~5번중에 하나도 입력 안했으면 에러..!
@@ -231,7 +231,7 @@ class examController extends exam
 			$new_ans_list = array();
 			foreach($ans_list as $kry=>$val)
 			{
-				if(!$params->{'q_answer'.$val}) continue;
+				if($params->{'q_answer'.$val} == "") continue;
 				$new_ans_list[] = $val;
 			}
 			$params->q_answer = implode(",", $new_ans_list);
