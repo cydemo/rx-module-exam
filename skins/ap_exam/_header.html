@@ -19,7 +19,7 @@
 				<a href="{getUrl('category', $val->category_srl, 'document_srl', '', 'page', '', 'search_status', '')}"><i class="xi-check" cond="$val->selected || in_array($category, $val->childs)"></i> {$val->title}</a>
 				<ul cond="$val->child_count">
 					<li loop="$category_list => $k, $v" class="on"|cond="$v->selected" cond="$v->parent_srl === $val->category_srl">
-						<a href="{getUrl('category', $v->category_srl, 'document_srl', '', 'page', '', 'act', '', 'search_status', '')}"><i class="xi-check" cond="$v->selected"></i> {$v->title}</a>
+						<a href="{getUrl('category', $v->category_srl, 'document_srl', '', 'page', '', 'search_status', '')}"><i class="xi-check" cond="$v->selected"></i> {$v->title}</a>
 					</li>
 				</ul>
 			</li>
