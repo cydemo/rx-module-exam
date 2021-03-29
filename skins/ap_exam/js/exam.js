@@ -184,22 +184,28 @@ jQuery(function($) {
 	});
 
 	// 시험지별 관리 팝업창 띄우기
+	$('.exam_manager_wrap').appendTo('body');
     $(document).on('click', 'a.exam_manager', function(event) {
-        $('.exam_manager_group').not($(this).parent()).removeClass('on');
-        $(this).parent().toggleClass('on');
-		var trigger_width = $(this).outerWidth();
-		var target_width = $(this).next().outerWidth();
-		var right_gap = $(window).width() - $(this).offset().left - trigger_width;
-		var right_cond = ( target_width > trigger_width + right_gap ) ? target_width - trigger_width - right_gap : 0;
-		$(this).next().css({
-			top : $(this).offset().top + $(this).outerHeight(),
-			left : $(this).offset().left - right_cond
-		});
+        $('.exam_manager_wrap').hide();
+
+		var target_srl = $(this).data('document_srl');
+		var area = $('.exam_manager_wrap[rel="'+ target_srl +'"]');
+		var areaOffset = {top:event.pageY, left:event.pageX};
+
+		if ( area.outerHeight()+areaOffset.top > $(window).height()+$(window).scrollTop() ) {
+			areaOffset.top = $(window).height() - area.outerHeight() + $(window).scrollTop();
+		}
+		if ( area.outerWidth()+areaOffset.left > $(window).width()+$(window).scrollLeft() ) {
+			areaOffset.left = $(window).width() - area.outerWidth() + $(window).scrollLeft();
+		}
+		area.css({
+			top:areaOffset.top, left:areaOffset.left
+		}).show().focus();
 		return false;
     });
 	$(document).on('click', function(event) {
 		if ( $(event.target).hasClass('exam_manager') || $(event.target).hasClass('exam_manager_wrap') ) return false;
-		$('.exam_manager_group').removeClass('on');
+		$('.exam_manager_wrap').hide();
 	});
 
 	// 검색 모달창 띄우기

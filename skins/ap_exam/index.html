@@ -56,8 +56,8 @@
 		</td>
 		<td>
 			<div class="exam_manager_group ta_c" cond="$examitem->isGranted()">
-				<a href="javascript:void(0);" class="exam_manager"><i class="xi-bars"></i> {$lang->cmd_management}</a>
-				<div class="exam_manager_wrap">
+				<a href="javascript:void(0);" class="exam_manager" data-document_srl="{$examitem->document_srl}"><i class="xi-bars"></i> {$lang->cmd_management}</a>
+				<div class="exam_manager_wrap" rel="{$examitem->document_srl}">
 					<ul class="exam_manager_list">
 						<li><a href="{getUrl('','mid',$mid,'document_srl',$examitem->document_srl,'act','dispExamCreate')}">{$lang->cmd_exam_config}</a></li>
 						<li><a href="{getUrl('','mid',$mid,'document_srl',$examitem->document_srl,'act','dispExamEditMode','mode','write')}" onclick="examopen(this.href,'exam');return false">{$lang->cmd_question_write}</a></li>
