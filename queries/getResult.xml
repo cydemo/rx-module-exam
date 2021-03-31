@@ -6,6 +6,7 @@
     <columns>
         <column name="result.*" />
         <column name="exam.title" />
+		<column name="exam.category_srl" />
         <column name="exam.result_type" />
     </columns>
     <conditions>
